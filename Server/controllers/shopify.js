@@ -9,11 +9,8 @@ exports.install = (req, res) => {
   const appScope = process.env.APP_SCOPE;
   const appDomain = process.env.APP_DOMAIN;
 
-  //build the url
   const installUrl = `https://${shop}/admin/oauth/authorize?client_id=${apiKey}&scope=${appScope}&redirect_uri=http://${appDomain}/api/shopify/auth`;
 
-  //Do I have the token already for this store?
-  //Check database
   res.redirect(installUrl);
 };
 
@@ -29,14 +26,13 @@ exports.authenticate = async (req, res) => {
 
   shop.match(regex) ? (securityPass = true) : (securityPass = false);
 
-  // 1. Parse the string URL to object
+  //  Parse the string URL to object
   const urlObj = url.parse(req.url);
-  // 2. Get the 'query string' portion
+  //  Get the 'query string' portion
   const query = urlObj.search.slice(1);
   verify(query) ? (securityPass = true) : (securityPass = false);
 
   if (securityPass && regex) {
-    //Exchange temporary code for a permanent access token
     let accessTokenRequestUrl = "https://" + shop + "/admin/oauth/access_token";
     let accessTokenPayload = {
       client_id: apiKey,
@@ -70,7 +66,7 @@ exports.authenticate = async (req, res) => {
             });
           }
         });
-        res.redirect(process.env.APP_CLIENT + storename);
+        res.redirect(`${process.env.APP_CLIENT}${storename}`);
       })
       .catch((error) => {
         res.status(error.statusCode).send(error.error.error_description);
