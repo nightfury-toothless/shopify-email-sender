@@ -1,0 +1,23 @@
+.navbar-wrapper {
+  width: 100%;
+  height: 50px;
+  background-color: #282c34;
+  position: fixed;
+  top: 0;
+  font-family: "Poppins", sans-serif;
+}
+.navbar-header {
+  color: #e6e6e6;
+  height: 100%;
+  padding: 0 30px;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar-header .navbar-userstore {
+  font-size: 12px;
+  background-color: #255ff4;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
