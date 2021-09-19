@@ -1,12 +1,22 @@
 import React from "react";
 import "./App.css";
+import { Switch, Route, withRouter, Redirect } from "react-router-dom";
+import Template from "./Pages/Template";
+import Home from "./Pages/Home";
+import PageNotFound from "./Pages/PageNotFound";
+import Navbar from "./Components/Navbar/Navbar";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">Hello world</header>
+    <div>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/:store" component={Template} />
+        <Route path="*" component={PageNotFound} />
+      </Switch>
     </div>
   );
-}
+};
 
-export default App;
+export default withRouter(App);
