@@ -1,2 +1,3 @@
 # dependencies
 /Server/node_modules
+/Server/.env
