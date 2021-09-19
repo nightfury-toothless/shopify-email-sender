@@ -1,7 +1,7 @@
-const API = process.env.API;
+const API = process.env.REACT_APP_API;
 
 export const fetchUser = (store) => {
-  return fetch(`http://localhost:7000/api/user?store=${store}.myshopify.com`, {
+  return fetch(`${API}/user?store=${store}.myshopify.com`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -21,17 +21,14 @@ export const fetchUser = (store) => {
 };
 
 export const updateTemplate = (store, template) => {
-  return fetch(
-    `http://localhost:7000/api/user/template?store=${store}.myshopify.com`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(template),
-    }
-  ).then((response) => {
+  return fetch(`${API}/user/template?store=${store}.myshopify.com`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(template),
+  }).then((response) => {
     return response.json();
   });
 };
